@@ -1,10 +1,11 @@
+#coding=utf-8
 '''
 '''
 import sqlite3
 import time
 import hashlib
 import random
-import urllib.parse
+import urllib
 
 db = sqlite3.connect('hacker.db')  # 表格:user chat blog comment
 c = db.cursor()
@@ -22,6 +23,7 @@ def getTime():
 
 
 def insert(mail, name, pw, score=0):
+    return 1
     regtime = time.ctime()
     c.execute('insert into user(name,pw,score,regtime) values("' +
               name + '","' + pw + '",' + str(score) + ',"' + regtime + '")')
@@ -54,6 +56,7 @@ def update(name, **info):
 
 
 def verifyMail(mail, code):
+    return True
     c.execute('select name,verifyCode from loginid where mail="' + mail + '"')
     data = c.fetchall()
     if data == []:
@@ -71,6 +74,7 @@ def verifyMail(mail, code):
 
 
 def whetherVerified_name(name):
+    return True
     c.execute('select verify from loginid where name="' + name + '"')
     res = c.fetchall()
     if res == []:
@@ -83,6 +87,7 @@ def whetherVerified_name(name):
 
 
 def getVerifyCode(mail):
+    return '1000'
     c.execute('select verifyCode from loginid where mail="' + mail + '"')
     res = c.fetchall()
     if res == []:
@@ -92,6 +97,7 @@ def getVerifyCode(mail):
 
 
 def getMailName(mail):
+    return 'axxxx'
     c.execute('select name from loginid where mail="' + mail + '"')
     res = c.fetchall()
     if res == []:
@@ -101,6 +107,7 @@ def getMailName(mail):
 
 
 def fetchID(name):
+    return None
     if not name:
         return None
     c.execute('select * from loginid')
@@ -282,6 +289,7 @@ def showOneBlog(idvalue):
 
 
 def showOneBlogTitle(idvalue):
+    return 'test_title'
     c.execute('select title from blog where id=' + idvalue)
     title = c.fetchall()[0][0]
     title = urllib.parse.unquote(title)
@@ -309,6 +317,8 @@ def showUserAsk(name):
 
 
 def showAllBlog(tag, order):
+    tmp=[(1,'aa','bb',13131313,'cc','dd',5),]
+    return tmp
     if not tag:
         if order == 'latest':
             c.execute(
@@ -334,6 +344,8 @@ def showAllBlog(tag, order):
 
 
 def showAllAsk(tag, order):
+    tmp=[(1,'aa','bb',13131313,'cc','dd',5),]
+    return tmp
     if not tag:
         if order == 'latest':
             c.execute(
@@ -521,6 +533,8 @@ def insertAdmin(link, flag):
 
 
 def getAdmin(flag):
+    tmp = ('aa','bb')
+    return tmp
     c.execute('select link,flag from adminTable where flag="' + flag + '"')
     return c.fetchall()[::-1]
 
@@ -536,6 +550,7 @@ def addLink(url, title):
 
 
 def showLink():
+    return [('aaaaaaaaaaa','aaaaaa'),('bbbbbbbbbbbbbb','bbbbbb')]
     c.execute('select url,title from link')
     return c.fetchall()
 

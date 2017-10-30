@@ -1,7 +1,9 @@
+#coding=utf-8
 import smtplib
 import email.mime.multipart
 import email.mime.text
-from mailPassword import *  # 这里存放的是我的邮箱密码
+#from mailPassword import *  # 这里存放的是我的邮箱密码
+MAILPASSWORD='123456'
 
 def mailTo(name, mail, verifyCode):
     sourceMail = 'ustchacker@aliyun.com'

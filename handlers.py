@@ -1,10 +1,10 @@
+#coding=utf-8
 from db import *
 from mdFilter import *
 from sendMail import *
 import tornado.web
-import urllib.parse
 import rootAdminName
-
+import urllib
 
 class mainHandler(tornado.web.RequestHandler):
 
@@ -48,11 +48,11 @@ class indexHandler(tornado.web.RequestHandler):
         blogs_ask_new = []
         for i in blogs:
             i = list(i)
-            i[2] = urllib.parse.unquote(i[2])
+            i[2] = urllib.unquote(i[2])
             blogs_new.append(i)
         for i in blogs_ask:
             i = list(i)
-            i[2] = urllib.parse.unquote(i[2])
+            i[2] = urllib.unquote(i[2])
             blogs_ask_new.append(i)
         blogNum = len(blogs)
         askNum = len(blogs_ask)
@@ -365,11 +365,11 @@ class tagHandler(tornado.web.RequestHandler):
         blogs_ask_new = []
         for i in blogs:
             i = list(i)
-            i[2] = urllib.parse.unquote(i[2])
+            i[2] = urllib.unquote(i[2])
             blogs_new.append(i)
         for i in blogs_ask:
             i = list(i)
-            i[2] = urllib.parse.unquote(i[2])
+            i[2] = urllib.unquote(i[2])
             blogs_ask_new.append(i)
         blogNum = len(blogs)
         askNum = len(blogs_ask)
